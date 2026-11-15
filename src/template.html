@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Voo 0471</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>/*CSS*/</style>
+</head>
+<body>
+<div id="app"></div>
+
+<div id="loading"><div class="ld-inner"><div class="ld-title">VOO 0471</div><div class="ld-bar"><i id="ldbar"></i></div><div id="ldtxt">Preparando a aeronave…</div></div></div>
+
+<div id="title" class="hidden">
+  <div class="t-bg"></div>
+  <div class="t-inner">
+    <div class="t-kicker">ATLÂNTICA LINHAS AÉREAS · AT0471 · REC → LIS</div>
+    <h1>VOO 0471</h1>
+    <div class="t-sub">Altitude de Cruzeiro</div>
+    <div class="t-menu">
+      <button id="btnStart">Iniciar</button>
+      <button id="btnContinue" class="hidden">Continuar — Ato II</button>
+      <button id="btnCredits">Créditos</button>
+    </div>
+    <div class="t-opts">
+      <label>Sensibilidade <input id="optSens" type="range" min="0.3" max="2.5" step="0.05" value="1"></label>
+      <label>Volume <input id="optVol" type="range" min="0" max="1" step="0.05" value="0.85"></label>
+      <label>Qualidade <select id="optQ"><option value="2">Alta</option><option value="1" selected>Média</option><option value="0">Baixa</option></select></label>
+    </div>
+    <div class="t-note">Use fones de ouvido · Jogue no escuro · Conteúdo: violência, sangue, tensão psicológica</div>
+  </div>
+</div>
+
+<div id="credits" class="hidden"><div class="cr-inner" id="crInner"></div></div>
+
+<div id="hud" class="hidden">
+  <div id="xhair"></div>
+  <div id="prompt"></div>
+  <div id="topleft"><div id="charname"></div><div id="objective"></div></div>
+  <div id="topright"><div id="clock">04:38 UTC</div><div id="fl">FL370 · M.78</div></div>
+  <div id="timer" class="hidden"></div>
+  <div id="hint"></div>
+</div>
+<div id="lb-top" class="lb"></div><div id="lb-bot" class="lb"></div>
+<div id="subs"></div>
+<div id="dialog" class="hidden"><div id="dlgName"></div><div id="dlgText"></div><div id="dlgChoices"></div></div>
+<div id="card" class="hidden"></div>
+<div id="doc" class="hidden"><div id="docInner"></div><div class="doc-close">[E] / [Esc] fechar</div></div>
+<div id="notebook" class="hidden"><div class="nb-inner"><div class="nb-head"><span>CADERNO DE OCORRÊNCIA</span><span id="nbClose">[Tab] fechar</span></div><div class="nb-cols"><div id="nbClues"></div><div id="nbPeople"></div></div></div></div>
+<div id="pause" class="hidden"><div class="p-inner"><h2>PAUSA</h2><button id="btnResume">Continuar</button><button id="btnQuit">Menu principal</button>
+<div class="p-keys"><b>WASD</b> andar · <b>Mouse</b> olhar · <b>E</b> interagir · <b>F</b> lanterna · <b>Shift</b> correr · <b>Tab</b> caderno · <b>1-4</b> escolhas · <b>Esc</b> pausa</div></div></div>
+<div id="touch" class="hidden"><div id="joy"><i></i></div><div id="tbtns"><button id="tE">E</button><button id="tF">Luz</button><button id="tN">Caderno</button><button id="tRun">Correr</button></div></div>
+<div id="clickToPlay" class="hidden">Clique para continuar</div>
+
+<script>/*THREE*/</script>
+<script>/*ASSETS*/</script>
+<script>/*GAME*/</script>
+</body>
+</html>

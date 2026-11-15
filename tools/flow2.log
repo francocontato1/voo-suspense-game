@@ -1,0 +1,24 @@
+ok marta-cont 1.5s {"ch":"marta","clues":["luva","porta","corpo","livia","ronda","padre","celular"],"obj":""}
+31F ok
+STATE {"busy":true,"dlg":true,"mode":"talk","doc":false,"txt":"","ch":0,"mt":1,"paused":false,"locked":0,"pause":false}
+ok idle 22.5s {"ch":"marta","clues":["luva","porta","corpo","livia","ronda","padre","celular","davi","foto"],"obj":"Descubra quem matou Otávio Brandão. Reúna provas e ligue para o cockpit pelo interfone traseiro."}
+Acordar ok
+ok idle 1.3s {"ch":"marta","clues":["luva","porta","corpo","livia","ronda","padre","celular","davi","foto","mattar"],"obj":"Descubra quem matou Otávio Brandão. Reúna provas e ligue para o cockpit pelo interfone traseiro."}
+trolley A7 ok
+ok idle 0.8s {"ch":"marta","clues":["luva","porta","corpo","livia","ronda","padre","celular","davi","foto","mattar","faca"],"obj":"Descubra quem matou Otávio Brandão. Reúna provas e ligue para o cockpit pelo interfone traseiro."}
+Compartimento ok
+ok idle 0.3s {"ch":"marta","clues":["luva","porta","corpo","livia","ronda","padre","celular","davi","fotoSTATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+STATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+STATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+STATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+STATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+STATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+STATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+STATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+STATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+STATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+STATE {"busy":true,"dlg":false,"mode":"talk","doc":false,"txt":"","ch":0,"mt":0,"paused":true,"locked":0,"pause":true}
+FAIL page.waitForFunction: Timeout 240000ms exceeded.
+| pick:Você fotografou alguma coisa esta noite? | pick:Encerrar conversa | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | UNPAUSE | pick:O senhor conhecia Otávio Brandão, do 23C? | pick:O senhor saiu do seu assento esta noite? | pick:O que ele carregava, senhor Mattar? | pick:Encerrar conversa | pick:Onde você estava entre 03:30 e 04:20? | pick:Uma passageira ouviu um trolley no corredor às 03 | pick:Por que você trocou de escala ontem? | pick:Me mostre as suas mãos. | pick:Encerrar conversa | pick:Foi Diego Farias, o comissário da galley traseira | pick:1Faca de cerâmica no trolley A7 | pick:1Celular descartável na bolsa de Diego | pick:Fragmento de luva nitrílica AZUL | pick:"'Metade agora, metade em Lisboa.' O Mattar não v
+ERRORS:
+

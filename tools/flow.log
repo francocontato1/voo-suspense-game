@@ -1,0 +1,38 @@
+ok ringing 19.0s {"ch":"cockpit","clues":[],"obj":""}
+ok
+ok called 3.5s {"ch":"cockpit","clues":[],"obj":"Pegue a lanterna presa atrás do seu assento e saia do cockpit."}
+ok
+ok
+ok walk 0.5s {"ch":"walk","clues":[],"obj":"Pegue a lanterna presa atrás do seu assento e saia do cockpit."}
+ok aft 0.1s {"ch":"investigate","clues":[],"obj":"Vá até o fundo da aeronave — galley traseira. Sem alarmar os passageiros."}
+ok idle 0.6s {"ch":"investigate","clues":["diego1"],"obj":"Vá até o fundo da aeronave — galley traseira. Sem alarmar os passageiros."}
+Abrir o lavatório ok
+ok idle 1.9s {"ch":"investigate","clues":["diego1"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
+Examinar o corpo ok
+ok idle 0.2s {"ch":"investigate","clues":["diego1","corpo"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
+Abrir a lixeira ok
+ok idle 0.6s {"ch":"investigate","clues":["diego1","corpo","luva"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
+celular ok
+ok idle 0.2s {"ch":"investigate","clues":["diego1","corpo","luva","celular"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
+trava ok
+ok idle 0.3s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
+Examinar o assento ok
+ok idle 0.2s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
+bagageiro ok
+ok idle 0.2s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
+Lívia ok
+ok idle 3.9s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
+Diego ok
+ok idle 2.6s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda"],"obj":"O interfone traseiro está tocando — é o cockpit."}
+padre ok
+ok idle 0.6s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda","padre"],"obj":"O interfone traseiro está tocando — é o cockpit."}
+Marta ok
+ok idle 0.9s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda","padre"],"obj":"O interfone traseiro está tocando — é o cockpit."}
+ok aftRinging 0.0s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda","padre"],"obj":"O interfone traseiro está tocando — é o cockpit."}
+ok
+ok marta 2.3s {"ch":"marta","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda","padre"],"obj":"O interfone traseiro está tocando — é o cockpit."}
+31F ok
+ok idle 10.2s {"ch":"marta","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda","padre","davi","foto"],"obj":"Descubra quem matou Otávio Brandão. Reúna provas e ligue para o cockpit pelo int
+Acordar ok
+FAIL page.waitForFunction: Timeout 240000ms exceeded.
+exit 1

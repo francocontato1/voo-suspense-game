@@ -56,7 +56,7 @@ function initAudio() {
   [1760, 1864.7, 2349].forEach(f => { const o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = f; const g = ctx.createGain(); g.gain.value = .012; o.connect(g); g.connect(AU.glass); o.start(); });
   AU.pulse = ctx.createGain(); AU.pulse.gain.value = 0; AU.pulse.connect(master);
   { const o = ctx.createOscillator(); o.frequency.value = 41; const g = ctx.createGain(); g.gain.value = 0; const lfo = ctx.createOscillator(); lfo.type = 'square'; lfo.frequency.value = 1.15; const lg = ctx.createGain(); lg.gain.value = .5; lfo.connect(lg); lg.connect(g.gain); g.gain.value = .5; o.connect(g); g.connect(AU.pulse); o.start(); lfo.start(); }
-  AU.ready = true;
+  AU.ready = true; loadMusic();
 }
 function audioSetVolume(v) { AU.vol = v; if (AU.master) AU.master.gain.setTargetAtTime(v, AU.ctx.currentTime, .1); }
 // mixagem por zona: z do jogador e se está no cockpit
@@ -70,7 +70,7 @@ function audioUpdate(dt, cam, zone, muffle) {
   AU.airG.gain.setTargetAtTime((.010 + .012 * ck) * k * (1 - .5 * lav), t, .3);
   AU.windG.gain.setTargetAtTime((.02 + .11 * ck) * k, t, .3);
   AU.engG.gain.setTargetAtTime((.05 + .14 * engNear + .05 * aft - .04 * ck) * k, t, .3);
-  const T = AU.tension; AU.mus.gain.setTargetAtTime(.10 + T * .55, t, 1.5); AU.musLP.frequency.setTargetAtTime(380 + T * 900, t, 2);
+  const T = AU.tension; AU.mus.gain.setTargetAtTime((.10 + T * .55) * (MUS.ready ? .25 : 1), t, 1.5); AU.musLP.frequency.setTargetAtTime(380 + T * 900, t, 2);
   AU.glass.gain.setTargetAtTime(T > .45 ? (T - .45) * .9 : 0, t, 2); AU.pulse.gain.setTargetAtTime(T > .6 ? (T - .6) * .9 : 0, t, 1);
   // ouvinte HRTF
   const L = AU.ctx.listener; const f = V3(0, 0, -1).applyQuaternion(cam.quaternion), u = V3(0, 1, 0).applyQuaternion(cam.quaternion);

@@ -4,7 +4,7 @@ Um jogo de suspense e investigação em primeira pessoa, hiper-realista, que rod
 A história se passa dentro de um **Airbus A321neoLR** em cruzeiro noturno sobre o Atlântico (Recife → Lisboa, FL370).
 Um passageiro aparece morto no lavatório traseiro e ninguém sabe quem foi. O assassino ainda está a bordo, e pretende agir de novo.
 
-**Jogar:** abra o `index.html` (arquivo único e autocontido, ~2,3 MB, funciona offline) ou acesse a versão publicada no GitHub Pages.
+**Jogar:** versão web em `index.html` + pasta `assets3d/` (GitHub Pages), ou o arquivo único `dist/voo0471_offline.html` (~21 MB, tudo embutido, funciona offline).
 
 ## Como jogar
 | Ação | Teclado/mouse | Celular |
@@ -19,27 +19,30 @@ Um passageiro aparece morto no lavatório traseiro e ninguém sabe quem foi. O a
 | Pausa | Esc | — |
 
 ## Estrutura
-- **Prólogo / Ato I — Comandante Ricardo Valença:** cockpit, chamada do interfone, regra dos dois, caminhada pela cabine às escuras, cena do crime.
-- **Ato II — Marta Quintela, chefe de cabine:** interrogatórios, documentos (manifesto, escala, relatório sigiloso), provas físicas, acusação pelo interfone e clímax.
-- Final bom, finais ruins e checkpoint no Ato II.
+- **Prólogo / Ato I, Comandante Ricardo Valença:** cockpit, chamada do interfone, regra dos dois pilotos e caminhada pela cabine às escuras. Uma passageira agarra o braço do comandante no meio do corredor. Na cena do crime, ele examina o corpo, a placa da porta (inspeção 3D), a carteira e o PIN do celular da vítima, e interroga os passageiros.
+- **Ato II, Marta Quintela, chefe de cabine:** um trolley se solta na turbulência e espalha € 380 mil. Marta arranca a confissão do comissário, amplia a foto do jornalista, escuta escondida o telefonema do empresário atrás da cortina e encontra o padre parado na porta do lavatório, atrás dela. Depois ele vai se sentar ao lado da testemunha, e a bengala cai no corredor.
+- **Clímax:** refém na galley traseira, cena com câmeras cinematográficas, escolhas sob pressão, QTE com o extintor de Halon e a contenção do assassino.
+- Final bom, seis finais ruins (acusar a pessoa errada tem consequência) e checkpoint no Ato II.
 
 ## Realismo
 - Seção de cabine real da família A320: largura 3,70 m, pitch 31"/79 cm, 3-3, corredor ~50 cm, bagageiros, PSUs, janelas a cada 53 cm, portas L1/R1/L4/R4, saídas sobre as asas.
 - Cockpit com PFD, ND, ECAM e MCDU animados no padrão Airbus, overhead, pedestal, sidesticks.
-- Cabeça humana **escaneada em 3D** (Lee Perry-Smith / Infinite Realities, CC BY 3.0), com LOD para 150+ passageiros gerado com meshoptimizer.
+- **Pessoas reais**: 23 avatares Microsoft Rocketbox (MIT) com blendshapes faciais (expressões, piscar, fala) e animações de captura de movimento.
 - Céu real (cubemap da Via Láctea), textura lunar, mar de nuvens ao luar e flash da luz estroboscópica de ponta de asa.
 - Pipeline cinematográfico: HDR + MSAA, bloom em cascata, ACES, grão de filme, aberração cromática, vinheta, sujeira de lente, letterbox nas cenas.
-- Áudio 100% sintetizado em tempo real (Web Audio): ruído de fuselagem, fans LEAP-1A, ar-condicionado, vento no para-brisa, chimes Airbus, passos, HRTF 3D, trilha de tensão com reverb de convolução.
+- **Trilha com instrumentos reais** (FluidR3 GM, CC BY 3.0): contrabaixo, cello, cordas em tremolo, violino, coro, piano, tímpanos, taiko, prato reverso, orchestra hit e celesta, conduzidos por um diretor musical em cinco estados e com stingers orquestrais nos sustos.
+- Ambiência sintetizada em tempo real (Web Audio, HRTF 3D): ruído de fuselagem, fans LEAP-1A, ar-condicionado, vento no para-brisa, chimes Airbus e passos.
 
 ## Desenvolvimento
 ```bash
 npm install          # meshoptimizer (só para reprocessar a cabeça)
-node tools/build.mjs # gera index.html e dist/index.html
+node tools/build.mjs # gera index.html (web), dist/web/ e dist/voo0471_offline.html
 ```
 O código-fonte está em `src/js/*.js` (concatenado na ordem do nome do arquivo), `src/style.css` e `src/template.html`. Os assets ficam em `assets/`.
 
 ## Créditos e licenças
 - three.js r160, MIT.
-- "Infinite, 3D Head Scan" por Lee Perry-Smith (Infinite Realities), CC BY 3.0, via repositório do three.js.
+- Microsoft Rocketbox Avatar Library (MIT): avatares e animações.
+- FluidR3 GM, de Frank Wen (CC BY 3.0), via gleitz/midi-js-soundfonts: amostras da trilha.
 - Cubemap MilkyWay, textura lunar e lens dirt: exemplos do three.js.
 - Atlântica Linhas Aéreas, o voo AT0471, a Operação Maré Alta e todos os personagens são fictícios.

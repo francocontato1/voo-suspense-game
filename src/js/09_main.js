@@ -22,12 +22,12 @@ async function boot() {
   TEX.skyCube = new THREE.CubeTexture(imgs); TEX.skyCube.needsUpdate = true;
   TEX.moon = new THREE.Texture(await loadImg(window.__ASSETS.moon)); TEX.moon.needsUpdate = true;
   const dirt = new THREE.Texture(await loadImg(window.__ASSETS.lensdirt)); dirt.needsUpdate = true; R.matFinal.uniforms.tDirt.value = dirt;
-  progress(.45, 'Escaneamento facial (Lee Perry-Smith)'); await yieldUI(); await loadHead();
   progress(.55, 'Montando a fuselagem do A321neo'); await yieldUI();
   buildMaterials(buildEnv()); buildWorld();
   WORLD.curtain.geometry.translate(0, -.93, 0); WORLD.curtain.position.y = 2.04;
-  progress(.75, 'Embarcando 192 passageiros'); await yieldUI();
-  buildCast(); buildCrowd(new Set(['4A', '16D', '18D', '23A', '23B', '23C', '31F', '31E']));
+  progress(.62, 'Embarcando 192 passageiros'); await yieldUI();
+  await loadPeople(p => progress(.62 + .26 * p));
+  buildCast(); buildCrowd(new Set(['4A', '16D', '18D', '18E', '23A', '23B', '23C', '31F', '31E', '20C']));
   registerInteractions();
   progress(.9, 'Aquecendo shaders'); await yieldUI();
   drawECAM(WORLD.displays.ecam); drawSD(WORLD.displays.sd); drawIFE(WORLD.ife); drawFAP(WORLD.fap, false); drawOcc(false);
@@ -62,9 +62,9 @@ function showCredits(end) {
   const el = $('credits'); el.classList.remove('hidden'); if (INPUT.locked) document.exitPointerLock();
   $('crInner').innerHTML = `<h2>VOO 0471 — ALTITUDE DE CRUZEIRO</h2><p>Um suspense de investigação em primeira pessoa a bordo de um Airbus A321neoLR em cruzeiro noturno sobre o Atlântico.</p>
   <h2>ASSETS REAIS UTILIZADOS</h2>
-  <p><b>Cabeça humana escaneada em 3D</b> — "Infinite, 3D Head Scan" por Lee Perry-Smith / Infinite Realities, licença Creative Commons Attribution 3.0 (baseado em trabalho em triplegangers.com). Obtido do repositório oficial do three.js (examples/models/gltf/LeePerrySmith). LOD da multidão gerado com meshoptimizer.</p>
-  <p><b>Céu estrelado</b> — cubemap "MilkyWay" dos exemplos do three.js. <b>Lua</b> — textura lunar (three.js examples/textures/planets). <b>Sujeira de lente</b> — three.js examples.</p>
-  <p><b>Motor gráfico</b> — three.js r160 (MIT) · github.com/mrdoob/three.js</p>
+  <p><b>Pessoas</b>: 23 avatares da <b>Microsoft Rocketbox Avatar Library</b> (licença MIT, © 2020 Microsoft), com esqueleto de 81 ossos, blendshapes faciais ARKit e visemas, e animações de captura de movimento (sentar, andar, correr, gesticular, bater na porta, falar ao telefone). github.com/microsoft/Microsoft-Rocketbox</p>
+  <p><b>Trilha sonora</b>: notas reais do banco <b>FluidR3 GM</b> de Frank Wen (Creative Commons Attribution 3.0), via github.com/gleitz/midi-js-soundfonts: contrabaixo, cello, cordas, violino, coro, piano, tímpanos, taiko, prato reverso, orchestra hit e celesta.</p>
+  <p><b>Céu estrelado, lua e sujeira de lente</b>: exemplos do three.js. <b>Motor gráfico</b>: three.js r160 (MIT), GLTFLoader e meshoptimizer (MIT).</p>
   <h2>RECRIADO A PARTIR DE DADOS REAIS</h2>
   <p>Seção de cabine da família A320 (largura 3,70 m, pitch de 31"/79 cm, configuração 3-3, corredor ~50 cm), telas PFD/ND/ECAM no padrão Airbus, procedimentos de cabine (regra dos dois no cockpit, destrave externo do lavatório, sinal de cintos, kit de contenção), alternado ETOPS no Sal (GVAC), Convenção de Tóquio (1963) sobre a autoridade do comandante.</p>
   <p>Todo o áudio — ruído de fuselagem, zumbido dos fans LEAP-1A, ar-condicionado, vento no para-brisa, chimes, passos, batimentos e trilha — é sintetizado em tempo real com Web Audio (convolução, HRTF 3D). Texturas de tecido, carpete, couro, metal escovado e sangue são geradas proceduralmente.</p>
@@ -87,11 +87,12 @@ function loop() {
   fx.flash = Math.max(0, fx.flash - dt * 1.4);
   if (GAME.started && !GAME.paused) {
     updatePlayer(dt);
-    if (P.mode === 'talk' && GAME.camTarget) { const c = R.camera.position, t = GAME.camTarget; const ty = Math.atan2(-(t.x - c.x), -(t.z - c.z)), tp = Math.atan2(t.y - c.y, Math.hypot(t.x - c.x, t.z - c.z)); P.yaw += angDiff(P.yaw, ty) * (1 - Math.exp(-4 * dt)); P.pitch = damp(P.pitch, tp, 4, dt); R.camera.rotation.set(P.pitch, P.yaw, 0); }
+    if (P.mode === 'talk' && GAME.camTarget) { const c = R.camera.position, t = GAME.camTarget; const ty = Math.atan2(-(t.x - c.x), -(t.z - c.z)), tp = Math.atan2(t.y - c.y, Math.hypot(t.x - c.x, t.z - c.z)); P.yaw += angDiff(P.yaw, ty) * (1 - Math.exp(-4 * dt)); P.pitch = damp(P.pitch, tp, 4, dt); R.camera.rotation.set(P.pitch, P.yaw, 0); faceLightOn(t, c); R.camera.fov = damp(R.camera.fov, 48, 3, dt); R.camera.updateProjectionMatrix(); }
+    else if (P.mode === 'walk' && Math.abs(R.camera.fov - 68) > .05) { R.camera.fov = damp(R.camera.fov, 68, 4, dt); R.camera.updateProjectionMatrix(); if (Math.abs(R.camera.fov - 68) < .3) faceLightOff(); }
   } else if (!GAME.started) { const t = GAME.t; R.camera.position.set(Math.sin(t * .1) * .03, 1.62 + Math.sin(t * .37) * .01, 6.2 + t * .03 % 20); R.camera.rotation.set(-.04 + Math.sin(t * .2) * .01, Math.PI + Math.sin(t * .13) * .05, Math.sin(t * .3) * .004); }
-  updateDialog(dt); storyUpdate(dt);
+  updateDialog(dt); storyUpdate(dt); musicTick(); updateCine(dt);
   const cp = R.camera.position;
-  for (const k in PEOPLE.npcs) { const n = PEOPLE.npcs[k]; if (n.g.visible && n.g.position.distanceTo(cp) < 14) n.update(dt, GAME.t, cp); }
+  updatePeople(dt * (GAME.slow || 1), GAME.t, cp);
   // cortina da executiva
   if (WORLD.curtain) { const d = Math.abs(cp.z - LAY.divZ), on = d < 1.1 && Math.abs(cp.x) < .5; const tgt = on ? Math.sign(cp.z - LAY.divZ || 1) * -.0 + (cp.z < LAY.divZ ? 1 : -1) * 1.1 * (1 - d / 1.1) : 0; WORLD.curtain.rotation.x = damp(WORLD.curtain.rotation.x, tgt + Math.sin(GAME.t * .7) * .02, 5, dt); }
   // luz do lavatório (reator fluorescente cansado)
@@ -112,4 +113,4 @@ function loop() {
   if (!GAME.norender) renderFrame(GAME.t);
 }
 boot().catch(e => { console.error(e); $('ldtxt').textContent = 'Erro ao iniciar: ' + e.message; });
-if (/debug/.test(location.search)) GAME.norender = /norender/.test(location.search); GAME.speed = parseFloat((location.search.match(/speed=([\d.]+)/) || [])[1] || 1); window.__DBG = { UI, CLUES, TRIGGERS, callMarta, openCockpitDoor, arriveAft, talkLivia, talkDiego, talkPadre, talkDavi, talkMattar, talkMarta, examineSeat, examineLock, examineTrash, answerHelena, accuse, reachLivia, examineTrolley, examineCrewBag, pressAction, dialogAdvance, pickChoice, begin, GAME, P, R, WORLD, PEOPLE, MAT, TEX, FLT, LAY, rowZ, seatPos, lightsDark, startMarta, climax, examineBody, openLav, addClue, renderFrame, AU };
+if (/debug/.test(location.search)) { GAME.norender = /norender/.test(location.search); GAME.speed = parseFloat((location.search.match(/speed=([\d.]+)/) || [])[1] || 1); window.__DBG = { INSP, dialogAdvance, GAME, P, R, WORLD, PEOPLE, CHARS, MAT, TEX, FLT, LAY, UI, rowZ, seatPos, lightsDark, renderFrame, AU, STORY, Person, bakeAvatar, begin }; }

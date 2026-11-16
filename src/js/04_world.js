@@ -75,14 +75,23 @@ function buildWorld() {
   { const g = new THREE.PlaneGeometry(.025, LAY.lavZ0 - .2); addMesh(g, MAT.pathLight, [-.26, .004, (LAY.lavZ0 + .2) / 2], [-Math.PI / 2, 0, 0], null, S, { cast: false, recv: false }); }
   // anteparo traseiro
   { const sh = new THREE.Shape(); full.forEach((p, i) => i ? sh.lineTo(p[0], p[1]) : sh.moveTo(p[0], p[1])); const g = new THREE.ShapeGeometry(sh); addMesh(g, MAT.plasticGrey, [0, 0, LAY.endZ - .01], [0, Math.PI, 0], null, S, { cast: false }); }
-  // anteparo do cockpit com vão da porta
+  // anteparo do cockpit: dois painéis laterais + verga, com vão de porta de 0,84 x 1,98 m
   {
-    const sh = new THREE.Shape(); full.forEach((p, i) => i ? sh.lineTo(p[0], p[1]) : sh.moveTo(p[0], p[1]));
-    const hole = new THREE.Path(); hole.moveTo(-.42, 0); hole.lineTo(.42, 0); hole.lineTo(.42, 1.98); hole.lineTo(-.42, 1.98); hole.lineTo(-.42, 0); sh.holes.push(hole);
-    const g = new THREE.ExtrudeGeometry(sh, { depth: .08, bevelEnabled: false }); addMesh(g, MAT.plasticGrey, [0, 0, LAY.ckDoor - .04], null, null, S);
-    // porta blindada do cockpit
-    const dg = roundedBox(.82, 1.96, .06, .01, 2); dg.translate(.41, .98, 0); const door = addMesh(dg, MAT.plasticDark, [-.41, 0, LAY.ckDoor], null, null, S);
-    addMesh(roundedBox(.03, .14, .05, .01, 1), MAT.metal, [.72, 1.02, .04], null, null, door); addMesh(new THREE.CircleGeometry(.018, 16), MAT.black, [.41, 1.55, .032], null, null, door, { cast: false });
+    const DW = .42, DH = 1.98; const side = (sgn) => { const pts0 = full.filter(p => p[0] * sgn >= DW); const pts = sgn > 0 ? pts0.reverse() : pts0; const sh = new THREE.Shape();
+      const top = (() => { for (let i = 0; i < full.length - 1; i++) { const a = full[i], b = full[i + 1]; if ((a[0] - sgn * DW) * (b[0] - sgn * DW) <= 0 && a[1] > 1) return lerp(a[1], b[1], (sgn * DW - a[0]) / (b[0] - a[0])); } return 2.14; })();
+      sh.moveTo(sgn * DW, 0); pts.forEach(p => sh.lineTo(p[0], p[1])); sh.lineTo(sgn * DW, top); sh.lineTo(sgn * DW, 0);
+      addMesh(new THREE.ExtrudeGeometry(sh, { depth: .08, bevelEnabled: false }), MAT.plasticGrey, [0, 0, LAY.ckDoor - .04], null, null, S); };
+    side(-1); side(1);
+    addMesh(new THREE.BoxGeometry(DW * 2, 2.17 - DH, .08), MAT.plasticGrey, [0, DH + (2.17 - DH) / 2, LAY.ckDoor], null, null, S);
+    // batente metálico
+    for (const x of [-DW - .015, DW + .015]) addMesh(new THREE.BoxGeometry(.03, DH, .1), MAT.metal, [x, DH / 2, LAY.ckDoor], null, null, S);
+    addMesh(new THREE.BoxGeometry(DW * 2 + .06, .03, .1), MAT.metal, [0, DH + .015, LAY.ckDoor], null, null, S);
+    // porta blindada (abre para dentro do cockpit), olho mágico, maçaneta, teclado de acesso
+    const dg = roundedBox(DW * 2 - .02, DH - .02, .06, .012, 2); dg.translate(DW - .01, (DH - .02) / 2, 0); const door = addMesh(dg, MAT.plasticDark, [-DW + .01, .005, LAY.ckDoor], null, null, S);
+    addMesh(roundedBox(.035, .16, .05, .012, 1), MAT.metal, [DW * 2 - .12, 1.02, .045], null, null, door); addMesh(roundedBox(.035, .16, .05, .012, 1), MAT.metal, [DW * 2 - .12, 1.02, -.045], null, null, door);
+    addMesh(new THREE.CylinderGeometry(.014, .014, .07, 16), MAT.chrome, [DW, 1.56, 0], [Math.PI / 2, 0, 0], null, door);
+    const pl = new THREE.MeshStandardMaterial({ map: signTex('FLIGHT DECK', 'ACESSO RESTRITO', '#1c1d20', '#d8d4cb', 512, 160), roughness: .6 }); addMesh(new THREE.PlaneGeometry(.26, .08), pl, [DW, 1.38, .032], null, null, door, { cast: false });
+    const kp = signTex('1 2 3', '4 5 6 · 7 8 9', '#141517', '#9cb6c8', 256, 256); addMesh(new THREE.PlaneGeometry(.09, .12), new THREE.MeshStandardMaterial({ map: kp, emissive: 0x223344, emissiveIntensity: .6, roughness: .4 }), [DW + .1, 1.3, LAY.ckDoor + .045], null, null, S, { cast: false });
     WORLD.ckDoor = door;
   }
   buildCockpit();

@@ -13,14 +13,14 @@ function wait(s) { return new Promise(r => GAME.timers.push({ t: GAME.t + s, r }
 function fxTo(k, v, sec) { const from = GAME.fx[k]; const t0 = GAME.t; return new Promise(res => { GAME.tweens = GAME.tweens || []; GAME.tweens.push({ k, from, v, t0, sec: Math.max(.001, sec), res }); }); }
 // ---- legendas
 let subTO; function sub(speaker, text, sec) { const s = $('subs'); s.innerHTML = text ? `<div class="ln">${speaker ? `<span class="sp">${speaker}</span>` : ''}${text}</div>` : ''; clearTimeout(subTO); if (text && sec) subTO = setTimeout(() => s.innerHTML = '', sec * 1000); }
-async function say(speaker, text, sec, pos) { const d = sec || clamp(1.6 + text.length * .055, 2.4, 9); if (speaker && pos !== false) SFX.murmur(pos || null, Math.min(d * .7, 3)); sub(speaker, text, d); await wait(d + .25); }
+async function say(speaker, text, sec, pos) { const d = sec || clamp(1.6 + text.length * .055, 2.4, 9); if (speaker && pos !== false) SFX.murmur(pos || null, Math.min(d * .7, 3)); UI.onLine && UI.onLine(speaker, text, d); sub(speaker, text, d); await wait(d + .25); }
 // ---- diálogo
 function dialogShow(name, text) {
   const D = UI.dlg; D.active = true; $('dialog').classList.remove('hidden'); $('dlgName').textContent = name || ''; $('dlgChoices').innerHTML = ''; D.full = text; D.shown = 0; D.typing = true; D.choices = null; $('dlgText').textContent = '';
 }
 function line(name, text, opts = {}) {
   return new Promise(res => {
-    dialogShow(name, text); UI.dlg.resolve = res; UI.dlg.needConfirm = true; if (name && opts.voice !== false) SFX.murmur(opts.pos || null, Math.min(2.6, text.length * .04));
+    dialogShow(name, text); UI.dlg.resolve = res; UI.dlg.needConfirm = true; UI.onLine && UI.onLine(name, text, clamp(text.length * .05, 1, 6)); if (name && opts.voice !== false) SFX.murmur(opts.pos || null, Math.min(2.6, text.length * .04));
     UI.dlg.auto = opts.auto;
   });
 }

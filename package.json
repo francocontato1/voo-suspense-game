@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "meshoptimizer": "^0.21.0"
+    "meshoptimizer": "^1.3.0"
   }
 }

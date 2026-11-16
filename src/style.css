@@ -99,3 +99,32 @@ body.cine #hud{opacity:0}
 #tbtns{position:absolute;right:22px;bottom:30px;display:grid;grid-template-columns:repeat(2,64px);gap:10px;pointer-events:auto}
 #tbtns button{width:64px;height:64px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.25);font-size:12px;color:#ddd}
 #tbtns button:active{background:rgba(255,255,255,.2)}
+
+#inspect{position:fixed;inset:0;z-index:26;pointer-events:none}
+.insp-top{position:absolute;top:6vh;left:0;right:0;text-align:center}
+#inspTitle{font-family:"Barlow Condensed",Arial Narrow,sans-serif;font-size:clamp(20px,3vw,30px);letter-spacing:.2em;text-transform:uppercase;color:#eee}
+#inspHint{font-size:12px;color:#9a968e;margin-top:8px;letter-spacing:.06em}
+#inspFound{position:absolute;left:50%;bottom:13vh;transform:translateX(-50%);width:min(720px,90vw);display:flex;flex-direction:column;gap:8px}
+#inspFound .found{background:rgba(10,10,12,.82);border-left:3px solid var(--amber);padding:10px 14px;font-size:14px;line-height:1.5;animation:fin .4s}
+#inspClose,#photoClose{position:absolute;right:28px;bottom:28px;pointer-events:auto;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#bbb;border:1px solid #555;padding:8px 14px;background:rgba(0,0,0,.4)}
+#pin{position:fixed;inset:0;z-index:27;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center}
+.pin-phone{width:300px;background:linear-gradient(180deg,#1b2433,#0b0d12);border-radius:36px;padding:28px 22px 22px;box-shadow:0 30px 90px #000,inset 0 0 0 2px #2c2f36;text-align:center;font-family:Inter,Arial,sans-serif}
+.pin-t{font-size:48px;font-weight:300;color:#eee}.pin-sub{color:#aab;font-size:13px;margin:6px 0 14px}
+#pinDots{font-size:20px;letter-spacing:.4em;color:#ddd;margin-bottom:16px}
+#pinKeys{display:grid;grid-template-columns:repeat(3,64px);gap:12px;justify-content:center}
+#pinKeys button{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.1);color:#eee;font-size:22px}
+#pinKeys button:hover{background:rgba(255,255,255,.2)}
+#pinHint{margin-top:14px;font-size:11px;color:#778;line-height:1.5}
+#pin.shake .pin-phone{animation:shk .4s}
+@keyframes shk{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+#photo{position:fixed;inset:0;z-index:27;background:rgba(0,0,0,.86);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:4vh 4vw}
+.ph-frame{overflow:hidden;border:10px solid #111;box-shadow:0 30px 90px #000;max-width:min(860px,92vw)}
+#photoImg{display:block;width:100%;cursor:zoom-in;transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .45s}
+#photoCap{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#999;margin-top:10px}
+#photoNote{margin-top:10px;font-size:14px;color:var(--amber);min-height:1.4em;text-align:center;max-width:720px}
+#qte{position:fixed;left:50%;top:58%;transform:translate(-50%,-50%);z-index:28;text-align:center;pointer-events:auto}
+#qteLabel{font-family:"Barlow Condensed",Arial Narrow,sans-serif;font-size:clamp(22px,3.4vw,34px);letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:0 0 18px rgba(255,60,40,.7)}
+.qte-key{width:74px;height:74px;margin:14px auto;border:2px solid #fff;border-radius:12px;font-size:34px;line-height:70px;font-weight:600;color:#fff;background:rgba(160,20,10,.45);transition:transform .08s}
+#qte.pulse .qte-key{transform:scale(.88);background:rgba(255,60,40,.8)}
+.qte-track{width:280px;height:4px;background:rgba(255,255,255,.2);margin:0 auto}.qte-track i{display:block;height:100%;background:#f43}
+#qteCount{margin-top:8px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:#ccc}

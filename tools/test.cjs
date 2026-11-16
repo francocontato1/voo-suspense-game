@@ -3,7 +3,7 @@ const { chromium } = require('playwright');
   const b = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
   const pg = await b.newPage({ viewport: { width: +(process.env.W||800), height: +(process.env.H||450) } }); pg.setDefaultTimeout(120000); await pg.addInitScript(q => { try { localStorage.setItem('voo0471_opts', JSON.stringify({ q })); } catch (e) {} }, +(process.env.Q||0));
   const errs = []; pg.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') errs.push(m.type() + ': ' + m.text()); }); pg.on('pageerror', e => errs.push('PAGEERR ' + e.message + '\n' + e.stack));
-  await pg.goto('file://' + process.cwd() + '/index.html?debug&norender');
+  await pg.goto('file://' + process.cwd() + '/' + (process.env.PAGE||'dist/voo0471_offline.html') + '?debug&norender');
   await pg.waitForFunction(() => !document.getElementById('title').classList.contains('hidden') || document.getElementById('ldtxt').textContent.startsWith('Erro'), null, { timeout: 180000 });
   const fr = await pg.evaluate(() => new Promise(r => { let n = 0; const t0 = performance.now(); const f = () => { n++; if (performance.now() - t0 < 4000) requestAnimationFrame(f); else r(n / 4); }; requestAnimationFrame(f); })); console.log('fps', fr); console.log('loaded', await pg.evaluate(() => document.getElementById('ldtxt').textContent));
   if(!process.env.NOTITLE){await pg.waitForTimeout(1500); await pg.screenshot({ path: 'tools/shots/00_title.png' });}

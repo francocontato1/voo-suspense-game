@@ -45,7 +45,7 @@ function buildTextures(Q) {
   }
   // Capa do encosto (pano branco com marca)
   {
-    const s2 = 256; const f = genMaps(s2, (u, v) => { const w = (Math.sin(u * s2 * 1.2) * Math.sin(v * s2 * 1.2)) * .5 + .5; const n = NOISE.fbm(u * 6, v * 6, 3, 6); const m = .8 + .03 * w + .06 * n; return { c: [200 * m, 199 * m, 194 * m], h: w }; });
+    const s2 = 256; const f = genMaps(s2, (u, v) => { const w = NOISE.fbm(u * 40, v * 40, 2, 40); const n = NOISE.fbm(u * 6, v * 6, 3, 6); const m = .8 + .03 * w + .06 * n; return { c: [200 * m, 199 * m, 194 * m], h: w }; });
     const ctx = f.color.getContext('2d'); ctx.fillStyle = 'rgba(20,48,92,.9)'; ctx.font = '600 22px Inter, Arial'; ctx.textAlign = 'center'; ctx.fillText('ATLÂNTICA', s2 / 2, s2 * .62);
     ctx.strokeStyle = 'rgba(20,48,92,.9)'; ctx.lineWidth = 4; ctx.beginPath(); for (let i = 0; i <= 40; i++) { const x = s2 / 2 - 40 + i * 2; const y = s2 * .42 + Math.sin(i / 40 * TAU * 1.5) * 7; i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke();
     TEX.cover = texFromCanvas(f.color); TEX.coverN = texFromCanvas(normalFromHeight(f.height, s2, 1.2), false);

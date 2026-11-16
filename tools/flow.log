@@ -1,38 +1,34 @@
-ok ringing 19.0s {"ch":"cockpit","clues":[],"obj":""}
-ok
-ok called 3.5s {"ch":"cockpit","clues":[],"obj":"Pegue a lanterna presa atrás do seu assento e saia do cockpit."}
-ok
-ok
-ok walk 0.5s {"ch":"walk","clues":[],"obj":"Pegue a lanterna presa atrás do seu assento e saia do cockpit."}
-ok aft 0.1s {"ch":"investigate","clues":[],"obj":"Vá até o fundo da aeronave — galley traseira. Sem alarmar os passageiros."}
-ok idle 0.6s {"ch":"investigate","clues":["diego1"],"obj":"Vá até o fundo da aeronave — galley traseira. Sem alarmar os passageiros."}
-Abrir o lavatório ok
-ok idle 1.9s {"ch":"investigate","clues":["diego1"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
-Examinar o corpo ok
-ok idle 0.2s {"ch":"investigate","clues":["diego1","corpo"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
-Abrir a lixeira ok
-ok idle 0.6s {"ch":"investigate","clues":["diego1","corpo","luva"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
-celular ok
-ok idle 0.2s {"ch":"investigate","clues":["diego1","corpo","luva","celular"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
-trava ok
-ok idle 0.3s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
-Examinar o assento ok
-ok idle 0.2s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
-bagageiro ok
-ok idle 0.2s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
-Lívia ok
-ok idle 3.9s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia"],"obj":"Investigue: o lavatório, o corpo, o assento 23C e a passageira do 23A."}
-Diego ok
-ok idle 2.6s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda"],"obj":"O interfone traseiro está tocando — é o cockpit."}
-padre ok
-ok idle 0.6s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda","padre"],"obj":"O interfone traseiro está tocando — é o cockpit."}
-Marta ok
-ok idle 0.9s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda","padre"],"obj":"O interfone traseiro está tocando — é o cockpit."}
-ok aftRinging 0.0s {"ch":"investigate","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda","padre"],"obj":"O interfone traseiro está tocando — é o cockpit."}
-ok
-ok marta 2.3s {"ch":"marta","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda","padre"],"obj":"O interfone traseiro está tocando — é o cockpit."}
-31F ok
-ok idle 10.2s {"ch":"marta","clues":["diego1","corpo","luva","celular","porta","forro","pasta","livia","luvasLivia","ronda","padre","davi","foto"],"obj":"Descubra quem matou Otávio Brandão. Reúna provas e ligue para o cockpit pelo int
-Acordar ok
-FAIL page.waitForFunction: Timeout 240000ms exceeded.
-exit 1
+ok marta-cont 1.9s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro","obj":""}
+corpo ok
+ok idle 0.2s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro","obj":"Descubra quem matou Otávio Brandão. Reúna provas e ligue para o cockpit pelo int"}
+ok doorway 0.1s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro","obj":"Descubra quem matou Otávio Brandão. Reúna provas e ligue para o cockpit pelo int"}
+escala ok
+ok idle 0.0s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala","obj":"Descubra quem matou Otávio Brandão. Reúna provas e ligue para o cockpit pelo int"}
+ok trolley 0.0s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala","obj":"Descubra quem matou Otávio Brandão. Reúna provas e ligue para o cockpit pelo int"}
+ok idle 0.0s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala","obj":"O trolley A7 tombou no corredor. Algo se espalhou pelo chão."}
+notas ok
+ok idle 0.5s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro","obj":"O trolley A7 tombou no corredor. Algo se espalhou pelo chão."}
+diego ok
+ok idle 1.7s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao","obj":"O trolley A7 tombou no corredor. Algo se espalhou pelo chão."}
+davi ok
+ok idle 16.7s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom","obj":"O trolley A7 tombou no corredor. Algo se espalhou pelo chão."}
+davi2 ok
+ok idle 5.3s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom","obj":"O trolley A7 tombou no corredor. Algo se espalhou pelo chão."}
+ok escuta 3.5s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom,escuta","obj":"O trolley A7 tombou no corredor. Algo se espalhou pelo chão."}
+ok idle 0.0s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom,escuta","obj":"O trolley A7 tombou no corredor. Algo se espalhou pelo chão."}
+ok approach 13.8s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom,escuta","obj":"O padre se levantou… e foi até a fileira 23, ao lado de Lívia. VÁ ATÉ LÁ."}
+ok idle 0.3s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom,escuta","obj":"O padre se levantou… e foi até a fileira 23, ao lado de Lívia. VÁ ATÉ LÁ."}
+ok cane 10.1s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom,escuta","obj":"O padre se levantou… e foi até a fileira 23, ao lado de Lívia. VÁ ATÉ LÁ."}
+bengala ok
+ok idle 0.5s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom,escuta,bengala","obj":"O padre se levantou… e foi até a fileira 23, ao lado de Lívia. VÁ ATÉ LÁ."}
+mattar ok
+ok idle 1.5s {"ch":"marta","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom,escuta,bengala","obj":"O padre se levantou… e foi até a fileira 23, ao lado de Lívia. VÁ ATÉ LÁ."}
+accuse ok
+ok climax 0.7s {"ch":"climax","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom,escuta,bengala","obj":"O padre se levantou… e foi até a fileira 23, ao lado de Lívia. VÁ ATÉ LÁ."}
+ok credits 16.5s {"ch":"climax","clues":"corpo,fibras,placa,livia,celular,carteira,forro,escala,dinheiro,confissao,davi,foto,fotoZoom,escuta,bengala","obj":"O padre se levantou… e foi até a fileira 23, ao lado de Lívia. VÁ ATÉ LÁ."}
+pick:Examinar o pescoço | pick:Examinar o rosto | pick:Afastar-se | pick:Onde você estava entre 03:30 e 04:20? | pick:Por que você trocou de escala ontem? | pick:"Trezentos e oitenta mil euros, Diego." | pick:Encerrar conversa | pick:O senhor está acordado há muito tempo? | pick:Sua passagem foi comprada dois dias ant | pick:Você fotografou alguma coisa esta noite | pick:Encerrar conversa | pick:O senhor está acordado há muito tempo? | pick:Sua passagem foi comprada dois dias ant | pick:Você fotografou alguma coisa esta noite | pick:Encerrar conversa | pick:"Vou guardá-la na galley até o pouso, p | pick:O senhor conhecia Otávio Brandão, do 23 | pick:O senhor saiu do seu assento esta noite | pick:"Trezentos e oitenta mil euros num trol | pick:Encerrar conversa | pick:Foi o "padre" do 18D. | pick:5A bengala esconde uma lâmina | pick:Fibras de lã preta sob as unhas | pick:2Foto ampliada: colarinho clerical e be | pick:"Essa porta não abre em voo. São oito t
+ERRORS:
+warning: Scripts "build/three.js" and "build/three.min.js" are deprecated with r150+, and will be removed with r160. Please use ES Modules or alternatives: https://threejs.org/docs/index.html#manual/en/introdu
+warning: THREE.Material: 'envI' is not a property of THREE.MeshStandardMaterial.
+warning: [.WebGL-0x2a0400192600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+EXIT 0

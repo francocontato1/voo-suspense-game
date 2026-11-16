@@ -8,6 +8,7 @@ const CHARS = { tpl: {}, clips: {}, loader: null, boneNames: null };
 const PEOPLE = { npcs: {}, crowd: [] };
 async function assetBuf(name) {
   const A = window.__ASSETS || {}; if (A[name]) return b64ToBuf(A[name]);
+  if (/\.glb$/.test(name)) { const r = await fetch('assets3d/' + name + '.json'); if (!r.ok) throw new Error('asset ' + name); return b64ToBuf(await r.json()); }
   const r = await fetch('assets3d/' + name); if (!r.ok) throw new Error('asset ' + name); return r.arrayBuffer();
 }
 async function loadGLB(name) {

@@ -23,7 +23,10 @@ fs.mkdirSync(path.join(root, 'dist/web/assets3d'), { recursive: true });
 fs.writeFileSync(path.join(root, 'index.html'), web);
 fs.writeFileSync(path.join(root, 'dist/voo0471_offline.html'), off);
 fs.writeFileSync(path.join(root, 'dist/web/index.html'), web);
-for (const f of fs.readdirSync(path.join(root, 'assets3d'))) fs.copyFileSync(path.join(root, 'assets3d', f), path.join(root, 'dist/web/assets3d', f));
+for (const f of fs.readdirSync(path.join(root, 'dist/web/assets3d'))) fs.unlinkSync(path.join(root, 'dist/web/assets3d', f));
+for (const f of fs.readdirSync(path.join(root, 'assets3d'))) { if (f.endsWith('.glb')) fs.writeFileSync(path.join(root, 'dist/web/assets3d', f + '.json'), JSON.stringify(big[f])); else fs.copyFileSync(path.join(root, 'assets3d', f), path.join(root, 'dist/web/assets3d', f)); }
+// GitHub Pages: o index.html da raiz usa a mesma pasta
+fs.mkdirSync(path.join(root, 'web_assets_note'), { recursive: true }); fs.rmSync(path.join(root, 'web_assets_note'), { recursive: true });
 // variante para Artifact (o host injeta doctype/head/body)
 let art = web.replace(/<!doctype html>\s*/i, '').replace(/<html[^>]*>\s*/i, '').replace(/<\/html>\s*$/i, '').replace(/<head>\s*/i, '').replace(/<\/head>\s*/i, '').replace(/<body>\s*/i, '').replace(/<\/body>\s*/i, '')
   .replace(/<meta charset="utf-8">\s*/i, '').replace(/<meta name="viewport"[^>]*>\s*/i, '').replace('<style>', '<style>:root{color-scheme:dark;background:#000}');

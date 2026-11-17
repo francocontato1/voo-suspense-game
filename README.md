@@ -4,7 +4,10 @@ Um jogo de suspense e investigação em primeira pessoa, hiper-realista, que rod
 A história se passa dentro de um **Airbus A321neoLR** em cruzeiro noturno sobre o Atlântico (Recife → Lisboa, FL370).
 Um passageiro aparece morto no lavatório traseiro e ninguém sabe quem foi. O assassino ainda está a bordo, e pretende agir de novo.
 
-**Jogar:** versão web em `index.html` + pasta `assets3d/` (GitHub Pages), ou o arquivo único `dist/voo0471_offline.html` (~21 MB, tudo embutido, funciona offline).
+**Jogar online:** https://francocontato1.github.io/voo-suspense-game/ (GitHub Pages)
+· alternativa imediata: https://raw.githack.com/francocontato1/voo-suspense-game/main/index.html
+
+**Jogar offline:** baixe `dist/voo0471_offline.html` (arquivo único, ~22 MB, tudo embutido) e abra no Chrome ou Edge.
 
 ## Como jogar
 | Ação | Teclado/mouse | Celular |
